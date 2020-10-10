@@ -1,0 +1,9 @@
+notifier:
+  telegram_bot:
+    api_key:
+      api_key
+    chat_id:
+      - chat_id
+xsi_token:
+  api_key:
+    api_key
