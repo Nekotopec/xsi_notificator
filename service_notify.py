@@ -56,8 +56,10 @@ def format_message(call_info: parser.CallInfo, add: Union[Ad, None]) -> str:
 
 def get_ad_by_number(number: str):
     """ Returns Ad class's instance by number or None."""
-
-    raw_data = db.redis_get(number)
+    try:
+        raw_data = db.redis_get(number)
+    except db.RedisGetException:
+        raw_data = None
     if raw_data is not None:
         return serializer.deserialize(number, raw_data)
     else:
@@ -74,6 +76,6 @@ async def send_info(data: str):
     if call_info:
         if notifications_filter.check_notification(call_info):
             notifications_filter.remember_number(call_info)
-            ad = get_add_by_number(call_info.redirecting_number)
+            ad = get_ad_by_number(call_info.redirecting_number)
             message = format_message(call_info, ad)
             await notify(message)

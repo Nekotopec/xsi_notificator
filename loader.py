@@ -7,7 +7,7 @@ class Loader(ABC):
     @abstractmethod
     def load(self, data: NamedTuple):
         """
-        Load info about add to remote database.
+        Load info about ad to remote database.
         """
         pass
 
