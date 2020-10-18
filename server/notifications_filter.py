@@ -1,5 +1,5 @@
-from cache import cache_get, cache_set
-from parser import CallInfo
+from server.cache import cache_get, cache_set
+from server.parser import CallInfo
 
 
 def check_notification(call_info: CallInfo) -> bool:

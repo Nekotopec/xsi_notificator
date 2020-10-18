@@ -1,6 +1,6 @@
 import redis
 
-from serializer import Ad, get_serializer
+from server.serializer import Ad, get_serializer
 
 r = redis.Redis(host='localhost', port=6379, db=0)
 

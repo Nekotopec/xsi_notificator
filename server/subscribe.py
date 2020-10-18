@@ -5,13 +5,13 @@
 import asyncio
 import json
 import logging
-import sys
 
 import aiohttp
 
-from config import read_config
+from server.config import read_config
 
-API_TOKEN = read_config()['xsi_token']['api_key']
+API_TOKEN = read_config()['xsi']['api_key']
+IP = read_config()['xsi']['ip']
 logging.basicConfig(filename='sub_log.txt',
                     filemode='a',
                     format=(u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s'
@@ -37,7 +37,7 @@ async def subscribe(session: aiohttp.ClientSession) -> str:
     data = {"pattern": "9658136992@ip.beeline.ru",
             "expires": 3600,
             "subscriptionType": "BASIC_CALL",
-            "url": f"http://{ip}/subscription"}
+            "url": f"http://{IP}/subscription"}
     url = 'https://cloudpbx.beeline.ru/apis/portal/subscription'
     async with session.put(url=url,
                            headers=headers,
@@ -55,6 +55,7 @@ async def check_sub(sub_id, session: aiohttp.ClientSession) -> bool:
            f'subscriptionId={sub_id}')
     async with session.get(url, headers=headers) as response:
         data = await response.json()
+        print(data)
         error = data.get('errorCode')
         if error is not None:
             if error == 'GetSubscriptionInfoError':
@@ -82,7 +83,6 @@ async def task():
 
 
 if __name__ == '__main__':
-    ip = sys.argv[1]
     loop = asyncio.get_event_loop()
     task_ = loop.create_task(task())
     future = asyncio.wait([task_])

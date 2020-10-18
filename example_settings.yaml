@@ -4,6 +4,11 @@ notifier:
       api_key
     chat_id:
       - chat_id
-xsi_token:
+xsi:
   api_key:
     api_key
+  ip:
+    server_ip
+loader:
+  token:
+    header_token

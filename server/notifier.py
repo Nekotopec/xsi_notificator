@@ -5,7 +5,7 @@ from typing import List
 import aiohttp
 import ujson
 
-from config import read_config
+from server.config import read_config
 
 
 class BaseError(Exception):

@@ -1,11 +1,11 @@
 import logging
 from typing import Union
 
-import db
-import notifications_filter
-import parser
-from notifier import get_notifiers_list
-from serializer import Ad, get_serializer
+import server.db as db
+import server.notifications_filter as notifications_filter
+import server.parser as parser
+from server.notifier import get_notifiers_list
+from server.serializer import Ad, get_serializer
 
 serializer = get_serializer()
 notifiers_list = get_notifiers_list()

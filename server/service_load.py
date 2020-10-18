@@ -1,5 +1,5 @@
-from serializer import Ad, get_serializer
-import db
+from server.serializer import Ad, get_serializer
+import server.db as db
 
 serializer = get_serializer()
 

@@ -5,7 +5,7 @@ try.py
 settings.yaml
 
 # Logs
-*.txt
+*log.txt
 *.out
 
 # Data
@@ -47,7 +47,7 @@ share/python-wheels/
 MANIFEST
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
+#  Usually these files are written by a web script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
@@ -149,3 +149,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 © 2019 GitHub, Inc.
+/xml_ex.txt
+/Xsi_event.txt
+/token.txt
+/notify_example.txt

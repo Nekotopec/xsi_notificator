@@ -1,10 +1,13 @@
 import asyncio
 import functools
 from aiohttp import web
+import os
 
-import service_notify
-import service_load
-from config import read_config
+print(os.getenv('PYTHONPATH'))
+
+import server.service_notify as service_notify
+import server.service_load as service_load
+from server.config import read_config
 
 HEADER_TOKEN = read_config()['loader']['token']
 
