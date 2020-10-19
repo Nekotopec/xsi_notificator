@@ -10,7 +10,7 @@ settings.yaml
 
 # Data
 /data
-
+client/
 
 
 # IDE Settings

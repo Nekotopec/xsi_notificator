@@ -40,6 +40,7 @@ def delete_ad(data: dict):
 
 
 def build_ad(data: dict) -> Ad:
+    link = data.get('link')
     return Ad(number=data['number'],
               address=data['address'],
-              link=data['link'])
+              link=link)
