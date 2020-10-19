@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: docker/web/Dockerfile
     working_dir: /code/server
-    command: gunicorn -w 4 webhook:init_app --reload --worker-class aiohttp.GunicornWebWorker --bind 127.0.0.1:8080
+    command: gunicorn webhook:init_app --reload --worker-class aiohttp.GunicornWebWorker --bind 0.0.0.0:8080
     ports:
       - "8080:8080"
     depends_on:
@@ -26,7 +26,6 @@ services:
 
   memcached:
     image: memcached:1.6.7-alpine
-    command: memcached -m 64
     ports:
       - "11211:11211"
     restart: always

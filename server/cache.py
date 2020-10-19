@@ -2,7 +2,7 @@ import logging
 
 from pymemcache import Client, MemcacheError
 
-client = Client(('127.0.0.1', 11211))
+client = Client(('memcached', 11211))
 
 
 def cache_set(key: str, value: str):
@@ -13,7 +13,13 @@ def cache_set(key: str, value: str):
 
 
 def cache_get(key):
-    data = client.get(key)
+    try:
+        data = client.get(key)
+    except MemcacheError:
+
+        logging.exception('Exception while cache_getting occurred.')
+        data = None
+
     if data:
         return data.decode()
     else:

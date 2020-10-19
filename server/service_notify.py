@@ -10,12 +10,6 @@ from server.serializer import Ad, get_serializer
 serializer = get_serializer()
 notifiers_list = get_notifiers_list()
 
-logging.basicConfig(filename='main_log.txt',
-                    filemode='a',
-                    format=(u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s'
-                            u' [%(asctime)s]  %(message)s'),
-                    level=logging.INFO)
-
 
 async def notify(message):
     """
@@ -78,4 +72,5 @@ async def send_info(data: str):
             notifications_filter.remember_number(call_info)
             ad = get_ad_by_number(call_info.redirecting_number)
             message = format_message(call_info, ad)
+            logging.info(message)
             await notify(message)

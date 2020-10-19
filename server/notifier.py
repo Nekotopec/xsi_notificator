@@ -75,6 +75,7 @@ class TelegramNotifier(AbstractNotifier):
         self.api_key = api_key
         self.chat_ids_list = chat_ids_list
         self.api_url = self._get_api_url()
+        logging.info(f'Bot: {api_key}')
 
     def _get_api_url(self):
         """

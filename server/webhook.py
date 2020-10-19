@@ -1,9 +1,13 @@
 import asyncio
 import functools
 from aiohttp import web
-import os
+import logging
 
-print(os.getenv('PYTHONPATH'))
+logging.basicConfig(filename='main_log.txt',
+                    filemode='a',
+                    format=(u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s'
+                            u' [%(asctime)s]  %(message)s'),
+                    level=logging.INFO)
 
 import server.service_notify as service_notify
 import server.service_load as service_load
@@ -11,9 +15,6 @@ from server.config import read_config
 
 HEADER_TOKEN = read_config()['loader']['token']
 
-
-# TODO: service for loading
-# TODO: loading client
 
 def check_header(func):
     @functools.wraps(func)
@@ -83,7 +84,7 @@ async def handler(request):
         service_notify.write_log(data)
     except:
         pass
-    print('Got request')
+    logging.info('Got request')
     return web.Response(status=200)
 
 

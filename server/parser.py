@@ -5,6 +5,15 @@ from typing import NamedTuple, Type, Union
 from bs4 import BeautifulSoup
 
 
+class BaseParserException(Exception):
+    pass
+
+
+class NotCallEventException(BaseParserException):
+    """Exception occur when server get not call event info."""
+    pass
+
+
 class CallInfo(NamedTuple):
     event_id: str
     calling_number: str
@@ -28,7 +37,10 @@ class XmlParser(AbstractParser):
     def get_info(cls, raw_data):
         """ Returns info about call from xml raw data."""
         xml_soup = cls._get_soup(raw_data)
-        call_info = cls._fetch_info(xml_soup)
+        try:
+            call_info = cls._fetch_info(xml_soup)
+        except NotCallEventException:
+            return None
 
         return call_info
 
@@ -52,7 +64,10 @@ class XmlParser(AbstractParser):
     @classmethod
     def _fetch_info(cls, soup: BeautifulSoup) -> Union[CallInfo, None]:
         event_id = soup.find('xsi:eventID').text
-        event_state = soup.find('xsi:state').text
+        try:
+            event_state = soup.find('xsi:state').text
+        except AttributeError:
+            raise NotCallEventException
         if cls._check_event_state(event_state):
 
             numbers = soup.find_all('xsi:address')
