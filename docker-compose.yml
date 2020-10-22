@@ -13,7 +13,7 @@ services:
     depends_on:
       - redis
       - memcached
-#    restart: always
+    restart: always
 
   redis:
     image: redis:6.0.8-alpine

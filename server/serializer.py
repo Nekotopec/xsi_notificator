@@ -63,7 +63,3 @@ class AdJsonSerializer(JsonSerializer):
         return Ad(number=key,
                   link=val_dict['link'],
                   address=val_dict['address'])
-
-
-def get_serializer():
-    return AdJsonSerializer()

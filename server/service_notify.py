@@ -5,15 +5,15 @@ import server.db as db
 import server.notifications_filter as notifications_filter
 import server.parser as parser
 from server.notifier import get_notifiers_list
-from server.serializer import Ad, get_serializer
+from server.serializer import Ad, AdJsonSerializer
 
-serializer = get_serializer()
+serializer = AdJsonSerializer()
 notifiers_list = get_notifiers_list()
 
 
 async def notify(message):
     """
-    Make all notifiers notify.
+    Makes all notifiers notify.
     """
 
     for notifier in notifiers_list:
@@ -33,7 +33,7 @@ def write_log(data):
 
 def format_message(call_info: parser.CallInfo, add: Union[Ad, None]) -> str:
     """
-    Format message with info from call_info.
+    Formats message with info from call_info.
     """
 
     message = (f'Номер звонящего: {call_info.calling_number} \n'

@@ -1,7 +1,7 @@
-from server.serializer import Ad, get_serializer
+from server.serializer import Ad, AdJsonSerializer
 import server.db as db
 
-serializer = get_serializer()
+serializer = AdJsonSerializer()
 
 
 class BaseException(Exception):

@@ -1,6 +1,6 @@
 import redis
 
-from server.serializer import Ad, get_serializer
+from server.serializer import Ad, AdJsonSerializer
 
 r = redis.Redis(host='redis', port=6379, db=0)
 
@@ -54,6 +54,6 @@ if __name__ == '__main__':
     ad = Ad(number='9659659659',
             link='https://yandex.ru',
             address='Тупа центр')
-    serializer = get_serializer()
+    serializer = AdJsonSerializer()
     key, value = serializer.serialize(ad)
     redis_set(key, value)

@@ -52,7 +52,7 @@ async def load_ad(request: web.Request):
             status=400
         )
 
-    return web.json_response(resp_data)
+    return web.json_response(resp_data, status=200)
 
 
 @check_header
