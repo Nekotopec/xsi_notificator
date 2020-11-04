@@ -16,6 +16,7 @@
 2. Заполнить файл **_settings.yaml_** настроек, руководствуясь шаблоном _**example_settings.yaml**_.
 
 3. Запустить docker-compose.
+
 `docker-compose up --build`
 
 После чего приложение начнет слушать http://127.0.0.1:8080/ad 
